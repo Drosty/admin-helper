@@ -155,6 +155,15 @@
                 expect(spy.firstCall.calledWithExactly({'First Client': 0.75})).to.be.true;
                 spy.restore();
             });
+
+            it('orders the rows alphabetically', function() {
+                var spy = sinon.stub(Summarize, '_render');
+
+                Summarize.run(rows());
+                expect(spy.firstCall.calledWithExactly({'First Client': 0.75})).to.be.true;
+                expect(spy.secondCall.calledWithExactly({'Last Client': 1.75})).to.be.true;
+                spy.restore();
+            });
         });
     });
 })();
